@@ -14,7 +14,7 @@ const categories = [
 
 const priorities = ["Low", "Medium", "High"];
 
-export default function AddItemPage() {
+const AddItemPage = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(false);
@@ -448,3 +448,5 @@ export default function AddItemPage() {
     </div>
   );
 }
+
+export default AddItemPage;

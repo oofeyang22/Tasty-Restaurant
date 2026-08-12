@@ -1,7 +1,7 @@
 import AddItemPage from "../components/AddItem";
 import { Toaster } from "react-hot-toast";
 
-export default function AddItemPage() {
+export default function AddItem() {
 
   return (
 
