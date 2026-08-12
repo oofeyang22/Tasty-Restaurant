@@ -12,6 +12,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { totalItems } = useCartStore();
+  
 
   const isAdmin = session?.user?.role === "admin";
 
@@ -37,6 +38,9 @@ const Navbar = () => {
 
           {session && (
             <>
+                <Link href="/orders" className="hover:text-cyan-400 transition">
+                   Orders
+                </Link>
               {isAdmin ? (
                 <>
                   <Link
@@ -147,6 +151,9 @@ const Navbar = () => {
 
           {session && (
             <>
+                <Link href="/orders" className="hover:text-cyan-400 transition">
+                   Orders
+                </Link>
               {isAdmin ? (
                 <>
                   <Link className="hover:text-cyan-500" href="/add-item">
