@@ -1,12 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { FaCheckCircle, FaSpinner } from "react-icons/fa";
 import useCartStore from "@/stores/useCartStore";
 
-export default function PaymentSuccessPage() {
+function VerifyingFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="text-center">
+        <FaSpinner className="text-6xl text-blue-500 animate-spin mx-auto mb-4" />
+        <h2 className="text-2xl font-semibold text-gray-700">
+          Verifying Payment...
+        </h2>
+        <p className="text-gray-500 mt-2">Please wait while we confirm your payment</p>
+      </div>
+    </div>
+  );
+}
+
+function PaymentSuccessContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [status, setStatus] = useState("verifying");
@@ -46,17 +60,7 @@ export default function PaymentSuccessPage() {
   }, [reference, clearCart]);
 
   if (status === "verifying") {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <FaSpinner className="text-6xl text-blue-500 animate-spin mx-auto mb-4" />
-          <h2 className="text-2xl font-semibold text-gray-700">
-            Verifying Payment...
-          </h2>
-          <p className="text-gray-500 mt-2">Please wait while we confirm your payment</p>
-        </div>
-      </div>
-    );
+    return <VerifyingFallback />;
   }
 
   if (status === "error") {
@@ -113,5 +117,13 @@ export default function PaymentSuccessPage() {
         </Link>
       </div>
     </div>
+  );
+}
+
+export default function PaymentSuccessPage() {
+  return (
+    <Suspense fallback={<VerifyingFallback />}>
+      <PaymentSuccessContent />
+    </Suspense>
   );
 }
