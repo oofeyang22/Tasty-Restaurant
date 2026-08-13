@@ -195,7 +195,7 @@ export default function CartPage() {
 
               <button
                 onClick={handleCheckout}
-                className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className=" cursor-pointer w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={items.length === 0}
               >
                 Proceed to Checkout

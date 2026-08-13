@@ -229,7 +229,7 @@ const OrderSchema = new mongoose.Schema(
     },
     paymentMethod: {
       type: String,
-      enum: ["stripe", "paypal", "cash", "bank_transfer"],
+      enum: ["stripe", "paystack", "paypal", "cash", "bank_transfer"],
       required: true,
     },
     paymentStatus: {
@@ -259,7 +259,7 @@ const OrderSchema = new mongoose.Schema(
       },
       zipCode: {
         type: String,
-        required: true,
+        required: false,
       },
     },
     deliveryInstructions: {

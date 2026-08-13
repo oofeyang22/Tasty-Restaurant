@@ -2,9 +2,15 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb.js";
 import {Order, Food} from "@/lib/models.js";
 //import useCartStore from "@/stores/useCartStore";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route.js";
 
 export async function GET(request) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
     const { searchParams } = new URL(request.url);
     const reference = searchParams.get("reference");
 
@@ -72,12 +78,8 @@ export async function GET(request) {
       );
     }
 
-    // Update food items stock (if you have stock management)
-    for (const item of order.items) {
-      await Food.findByIdAndUpdate(item.food, {
-        // Decrease stock here if you have a stock field
-        // $inc: { stock: -item.quantity }
-      });
+    if (order.user.toString() !== session.user.id) {
+      return NextResponse.json({ message: "Forbidden" }, { status: 403 });
     }
 
     return NextResponse.json({

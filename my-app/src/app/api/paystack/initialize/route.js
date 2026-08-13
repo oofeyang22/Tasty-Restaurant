@@ -84,8 +84,7 @@ export async function POST(request) {
       paymentStatus: "pending",
       status: "pending",
       shippingAddress,
-      paystackReference: data.data.reference,
-      stripeSessionId: null,
+      paystackReference: data.data.reference
     };
 
     const order = await Order.create(orderData);

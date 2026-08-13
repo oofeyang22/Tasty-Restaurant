@@ -73,10 +73,11 @@ export default function CheckoutPage() {
           phone: formData.phone,
         },
         shippingAddress: {
-          address: formData.address,
+          street: formData.address,
           city: formData.city,
           state: formData.state,
           country: formData.country,
+          zipCode: formData.zipCode
         },
       };
 
@@ -192,7 +193,7 @@ export default function CheckoutPage() {
                   </label>
                   <input
                     type="text"
-                    name="address"
+                    name="street"
                     value={formData.address}
                     onChange={handleChange}
                     placeholder="Street address"
@@ -233,7 +234,7 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className=" cursor-pointer w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {loading ? (
                     "Processing..."
