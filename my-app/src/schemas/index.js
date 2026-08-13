@@ -52,13 +52,13 @@ export const OrderItemSchema = z.object({
 
 export const OrderSchema = z.object({
   items: z.array(OrderItemSchema).min(1, "Order must contain at least one item"),
-  paymentMethod: z.enum(["stripe", "paypal", "cash", "bank_transfer"]),
+  paymentMethod: z.enum(["stripe", "paystack", "paypal",  "cash", "bank_transfer"]),
   shippingAddress: z.object({
     street: z.string().min(1, "Street address is required"),
     city: z.string().min(1, "City is required"),
     state: z.string().min(1, "State is required"),
-    country: z.string().min(1, "Country is required"),
-    zipCode: z.string().min(1, "Zip code is required"),
+    country: z.string().optional(),
+    zipCode: z.string().optional()
   }),
   deliveryInstructions: z.string().optional(),
 });

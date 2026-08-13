@@ -20,7 +20,7 @@ export default function CheckoutPage() {
     street: "",
     city: "",
     state: "",
-    country: "Nigeria",
+    country: "",
   });
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function CheckoutPage() {
     setLoading(true);
 
     // Validate form
-    if (!formData.email || !formData.fullName || !formData.address) {
+    if (!formData.email || !formData.fullName || !formData.street) {
       setError("Please fill in all required fields");
       setLoading(false);
       return;
@@ -73,7 +73,7 @@ export default function CheckoutPage() {
           phone: formData.phone,
         },
         shippingAddress: {
-          street: formData.address,
+          street: formData.street,
           city: formData.city,
           state: formData.state,
           country: formData.country,
@@ -194,7 +194,7 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     name="street"
-                    value={formData.address}
+                    value={formData.street}
                     onChange={handleChange}
                     placeholder="Street address"
                     required
