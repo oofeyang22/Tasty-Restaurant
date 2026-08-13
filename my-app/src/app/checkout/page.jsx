@@ -17,7 +17,7 @@ export default function CheckoutPage() {
     email: "",
     fullName: "",
     phone: "",
-    address: "",
+    street: "",
     city: "",
     state: "",
     country: "Nigeria",

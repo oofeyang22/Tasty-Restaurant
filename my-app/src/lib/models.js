@@ -255,7 +255,7 @@ const OrderSchema = new mongoose.Schema(
       },
       country: {
         type: String,
-        required: true,
+        required: false,
       },
       zipCode: {
         type: String,
